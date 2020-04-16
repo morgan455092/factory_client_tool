@@ -17,11 +17,12 @@ text = list()
 for line in f:
     str_list = line.split(',')
     if str_list[0] == "WRITE":
-        ws.Cells(int(str_list[1]),int(str_list[2])).Value = str_list[3]
+        str_list_data = str_list[3].split('\n')
+        ws.Cells(int(str_list[1]) , int(str_list[2])).Value = str_list_data[0]
         s.write("OK\n")
         wb.Save()
         
-    elif str_list[0] == "Get_Data":
+    elif str_list[0] == "Get_Data" or  str_list[0] == "Get_Data\n" :
         s.write("OK\n")
         get_data_list = ws.Range(ws.Cells(1,1), ws.Cells(200,100)).Value
         for i in range (200):
